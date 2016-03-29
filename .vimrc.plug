@@ -14,7 +14,7 @@ call plug#begin('~/.vim/plugged')
 
   " For looks
   Plug 'bling/vim-airline'
-  Plug 'NLKNguyen/papercolor-theme'
+  Plug 'tomasr/molokai'
 
   " Unite and unite sources
   Plug 'Shougo/unite.vim'
@@ -36,7 +36,7 @@ call plug#begin('~/.vim/plugged')
 
   " For coding
   Plug 'matchit.zip'
-  Plug 'thrbrd/emmet-vim'
+  Plug 'mattn/emmet-vim'
   Plug 'surround.vim'
   Plug 'tComment'
   Plug 'Lokaltog/vim-easymotion'
@@ -74,4 +74,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'airblade/vim-rooter'
   Plug 'suan/vim-instant-markdown'
   Plug 'mattn/webapi-vim'
+  Plug 'Shougo/neomru.vim'
+  Plug 'plasticboy/vim-markdown'
+  Plug 'kannokanno/previm'
+  Plug 'tyru/open-browser.vim'
+
 call plug#end()

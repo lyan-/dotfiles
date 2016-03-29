@@ -1,8 +1,9 @@
 " Basic
-colo PaperColor
 syntax on
 filetype off
 filetype plugin on
+
+colorscheme molokai
 set guifont=Ricty_Diminished:h10
 set backspace=indent,eol,start
 set background=dark
@@ -47,7 +48,8 @@ set undodir=~/.vim/undo
 set undofile
 
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\""
-
+au BufRead,BufNewFile *.md set filetype=markdown
+let g:previm_open_cmd = 'open -a Google\ Chrome'
 " Keymaps all
 map R <Plug>(operator-replace)
 

@@ -134,3 +134,6 @@ call altercmd#load()
 nmap ,rej :Ref webdict ej 
 nmap ,rje :Ref webdict je 
 nmap ,rw :Ref webdict w 
+
+" [jj] - back to normal mode
+imap <silent> jj <ESC>
