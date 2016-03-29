@@ -1,3 +1,8 @@
+# The Original Dotfiles
+
+thanks thrbrd.
+https://github.com/thrbrd/dotfiles
+
 # Usage
 
 1. Install homebrew<br>``` ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" ```<br>or http://brew.sh/
