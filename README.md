@@ -11,3 +11,12 @@ https://github.com/thrbrd/dotfiles
 1. Clone dotfiles repository<br>``` homesick clone https://github.com/lyan-/dotfiles.git ~/dotfiles ```
 1. Press the command ``` sh ~/dotfiles/init.sh ```
 
+# Vim...
+Requirements: the NEW vim with lua (so this is not preinstalled on macOSX)
+
+# Setting Tmux
+
+1. Clone TPM:
+    $ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+2. Press `prefix + I` to install tmux-plugins
