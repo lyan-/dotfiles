@@ -14,6 +14,10 @@ https://github.com/thrbrd/dotfiles
 # Vim...
 Requirements: the NEW vim with lua (so this is not preinstalled on macOSX)
 
+1. ``` vim ```
+2. ``` :PlugInstall ```
+3. Done
+
 # Setting Tmux
 
 1. Clone TPM:
