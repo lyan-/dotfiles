@@ -64,9 +64,7 @@ path=(
 )
 
 export PATH=$HOME/.nodebrew/current/bin:$PATH:$HOME/.rbenv/bin:/usr/local/bin:$PATH
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
-export M2_HOME=$HOME/tool/apache-maven-3.2.5
-export PATH=$PATH:$M2_HOME/bin
+export PATH=$HOME/.npm/bin:$PATH
 
 # -------------------------------------
 # プロンプト
@@ -180,6 +178,7 @@ alias gpor="git push origin `git rev-parse --abbrev-ref HEAD`"
 alias chrome="open -a Google\ Chrome"
 alias finder="open -a Finder"
 alias atom="open -a Atom"
+alias vi="/usr/local/bin/vim"
 
 bindkey '^r^h' anyframe-widget-execute-history
 bindkey '^r^b' anyframe-widget-checkout-git-branch
