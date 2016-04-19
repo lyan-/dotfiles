@@ -178,7 +178,9 @@ alias gpor="git push origin `git rev-parse --abbrev-ref HEAD`"
 alias chrome="open -a Google\ Chrome"
 alias finder="open -a Finder"
 alias atom="open -a Atom"
+
 alias vi="/usr/local/bin/vim"
+alias be="bundle exec"
 
 bindkey '^r^h' anyframe-widget-execute-history
 bindkey '^r^b' anyframe-widget-checkout-git-branch
