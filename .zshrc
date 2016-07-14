@@ -219,3 +219,4 @@ PROMPT='
 %F{yellow}[%~]%f `vcs_echo`
 %(?.$.%F{red}$%f) '
 
+eval "$(rbenv init -)"
