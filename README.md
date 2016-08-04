@@ -11,7 +11,23 @@ https://github.com/thrbrd/dotfiles
 1. Clone dotfiles repository<br>``` homesick clone https://github.com/lyan-/dotfiles.git ~/dotfiles ```
 1. Press the command ``` sh ~/dotfiles/init.sh ```
 
-# Zplug
+## option
+
+1. Install zsh via homebrew
+```
+brew install zsh
+```
+2. Install zplug via homebrew
+```
+brew install zplug
+```
+
+## Set zsh as login shell
+```
+chsh -s /usr/local/bin/zsh
+```
+
+## Zplug
 
 if zsh throws errors like 'no such directory or file .zplug'
 
