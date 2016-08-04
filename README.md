@@ -17,10 +17,6 @@ https://github.com/thrbrd/dotfiles
 ```
 brew install zsh
 ```
-2. Install zplug via homebrew
-```
-brew install zplug
-```
 
 ## Set zsh as login shell
 ```
@@ -32,6 +28,11 @@ chsh -s /usr/local/bin/zsh
 if zsh throws errors like 'no such directory or file .zplug'
 
 1. ```git clone https://github.com/zplug/zplug ~/.zplug```
+
+### or... Install zplug via homebrew
+```
+brew install zplug
+```
 
 
 # Vim...
