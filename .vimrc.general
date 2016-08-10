@@ -75,3 +75,9 @@ nmap \s :source ~/.vimrc <return>
 " Keymaps vmap
 vmap > >gv
 vmap < <gv
+
+" [jj] - back to normal mode
+imap <silent> jj <ESC>
+
+" clear window
+nnoremap <Leader>l :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>

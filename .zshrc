@@ -53,6 +53,10 @@ setopt auto_cd
 # パス
 # -------------------------------------
 
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+export M2_HOME=$HOME/tool/apache-maven-3.2.5
+export PATH=$PATH:$M2_HOME/bin 
+
 # 重複する要素を自動的に削除
 typeset -U path cdpath fpath manpath
 
@@ -63,11 +67,17 @@ path=(
     $path
 )
 
+# node
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 export PATH=$HOME/.nodebrew/current/npm/bin:$PATH
+export PATH=$HOME/.npm/bin:$PATH
+
+# ruby
 export RBENV_ROOT=/usr/local/rbenv
 export PATH=$RBENV_ROOT/.rbenv/bin:$HOME/local/bin:$PATH
 eval "$(rbenv init -)"
+
+# PHP
 export PATH=$HOME/.composer/vendor/bin:$PATH
 
 # -------------------------------------
@@ -226,3 +236,4 @@ PROMPT='
 %F{yellow}[%~]%f `vcs_echo`
 %(?.$.%F{red}$%f) '
 
+eval "$(rbenv init -)"

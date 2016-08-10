@@ -11,11 +11,41 @@ https://github.com/thrbrd/dotfiles
 1. Clone dotfiles repository<br>``` homesick clone https://github.com/lyan-/dotfiles.git ~/dotfiles ```
 1. Press the command ``` sh ~/dotfiles/init.sh ```
 
+## option
+
+1. Install zsh via homebrew
+```
+brew install zsh
+```
+
+## Set zsh as login shell
+```
+chsh -s /usr/local/bin/zsh
+```
+
+## Zplug
+
+if zsh throws errors like 'no such directory or file .zplug'
+
+1. ```git clone https://github.com/zplug/zplug ~/.zplug```
+
+### or... Install zplug via homebrew
+```
+brew install zplug
+```
+
+
 # Vim...
-Requirements: the NEW vim with lua (so this is not preinstalled on macOSX)
 
 1. ``` vim ```
 2. ``` :PlugInstall ```
+3. Done
+
+Requirements: the NEW vim with lua (so this is not preinstalled on macOSX)
+
+# replace your old vim with the new one -with-lua
+1. ``` brew install lua ```
+2. ``` brew reinstall vim --with-lua ```
 3. Done
 
 # Setting Tmux
