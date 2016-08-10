@@ -130,6 +130,43 @@ alias l1="ls -1"
 # tree
 alias tree="tree -NC" # N: 文字化け対策, C:色をつける
 
+alias gmod="git fetch && git merge origin/develop"
+alias gpor="git push origin `git rev-parse --abbrev-ref HEAD`"
+alias chrome="open -a Google\ Chrome"
+alias finder="open -a Finder"
+alias atom="open -a Atom"
+
+alias vi="/usr/local/bin/vim"
+
+#ruby bundler
+alias be="bundle exec"
+
+#util
+alias up="cd ..; ls -l"
+alias f="open ."
+
+#cd to where the active Finder opens
+cdf () {
+        target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
+        if [ "$target" != "" ]
+        then
+                cd "$target"
+                pwd
+        else
+                echo 'No Finder window found' >&2
+        fi
+}
+#cd to where the key match with grep search from current dir
+jj () {
+    if [ $1 ]; then
+        JUMPDIR=$(find . -type d -maxdepth 1 | grep $1 | tail -1)
+        if [[ -d $JUMPDIR && -n $JUMPDIR ]]; then
+            cd $JUMPDIR
+        else
+            echo "directory not found"
+        fi
+    fi
+}
 
 # -------------------------------------
 # キーバインド
@@ -175,15 +212,6 @@ zplug load --verbose
 
 bindkey -e
 setopt auto_cd
-
-alias gmod="git fetch && git merge origin/develop"
-alias gpor="git push origin `git rev-parse --abbrev-ref HEAD`"
-alias chrome="open -a Google\ Chrome"
-alias finder="open -a Finder"
-alias atom="open -a Atom"
-
-alias vi="/usr/local/bin/vim"
-alias be="bundle exec"
 
 bindkey '^r^h' anyframe-widget-execute-history
 bindkey '^r^b' anyframe-widget-checkout-git-branch

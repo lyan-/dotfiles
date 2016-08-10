@@ -81,3 +81,5 @@ imap <silent> jj <ESC>
 
 " clear window
 nnoremap <Leader>l :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
+
+nnoremap <silent><C-n> :NERDTreeFocus<cr>
