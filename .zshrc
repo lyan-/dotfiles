@@ -53,8 +53,6 @@ setopt auto_cd
 # パス
 # -------------------------------------
 
-export PATH=$HOME/.nodebrew/current/bin:$PATH:$HOME/.rbenv/bin:/usr/local/bin:$PATH
-export PATH=$HOME/.npm/bin:$PATH
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 export M2_HOME=$HOME/tool/apache-maven-3.2.5
 export PATH=$PATH:$M2_HOME/bin 
@@ -68,6 +66,19 @@ path=(
     /usr/local/sbin(N-/)
     $path
 )
+
+# node
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+export PATH=$HOME/.nodebrew/current/npm/bin:$PATH
+export PATH=$HOME/.npm/bin:$PATH
+
+# ruby
+export RBENV_ROOT=/usr/local/rbenv
+export PATH=$RBENV_ROOT/.rbenv/bin:$HOME/local/bin:$PATH
+eval "$(rbenv init -)"
+
+# PHP
+export PATH=$HOME/.composer/vendor/bin:$PATH
 
 # -------------------------------------
 # プロンプト
@@ -167,6 +178,9 @@ jj () {
         fi
     fi
 }
+
+#for rails
+alias be="bundle exec"
 
 # -------------------------------------
 # キーバインド

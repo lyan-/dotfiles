@@ -61,6 +61,7 @@ call plug#begin('~/.vim/plugged')
 
   " For git
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-obsession'
 
   " For translate
   Plug 'thinca/vim-ref'

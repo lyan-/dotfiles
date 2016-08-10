@@ -94,6 +94,9 @@ function! s:config_customincsearch() abort
   \}
 endfunction
 
+" nerdtree
+map <silent> <C-n> :NERDTreeFocus<cr>
+
 " vim-rooter
 let g:rooter_patterns = ['.git/']
 
