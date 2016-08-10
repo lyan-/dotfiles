@@ -155,6 +155,19 @@ alias be="bundle exec"
 #util
 alias up="cd ..; ls -l"
 alias f="open ."
+alias u="cd ~"
+
+alias j="z"
+
+# -------------------------------------
+# エイリアス
+# -------------------------------------
+
+# z
+. `brew --prefix`/etc/profile.d/z.sh
+function precmd () {
+   z --add "$(pwd -P)"
+}
 
 #cd to where the active Finder opens
 cdf () {

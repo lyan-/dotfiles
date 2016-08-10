@@ -70,7 +70,6 @@ call plug#begin('~/.vim/plugged')
 
   " Other
   Plug 'yuratomo/w3m.vim'
-  Plug 'tyru/skk.vim'
   Plug 'Shougo/vimproc'
   Plug 'airblade/vim-rooter'
   Plug 'suan/vim-instant-markdown'

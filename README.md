@@ -34,6 +34,9 @@ if zsh throws errors like 'no such directory or file .zplug'
 brew install zplug
 ```
 
+## Z
+
+1. ``` brew install z```
 
 # Vim...
 
@@ -41,12 +44,17 @@ brew install zplug
 2. ``` :PlugInstall ```
 3. Done
 
-Requirements: the NEW vim with lua (so this is not preinstalled on macOSX)
+>Requirements: the NEW vim with lua (so this is not preinstalled on macOSX)
 
-# replace your old vim with the new one -with-lua
+## how replace the old vim with the new one -with-lua
 1. ``` brew install lua ```
 2. ``` brew reinstall vim --with-lua ```
 3. Done
+
+## markdown viewer for vim
+```npm -g install instant-markdown-d```
+https://github.com/suan/vim-instant-markdown
+
 
 # Setting Tmux
 
@@ -54,3 +62,4 @@ Requirements: the NEW vim with lua (so this is not preinstalled on macOSX)
     $ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 2. Press `prefix + I` to install tmux-plugins
+
