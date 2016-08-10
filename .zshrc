@@ -63,8 +63,12 @@ path=(
     $path
 )
 
-export PATH=$HOME/.nodebrew/current/bin:$PATH:$HOME/.rbenv/bin:/usr/local/bin:$PATH
-export PATH=$HOME/.npm/bin:$PATH
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+export PATH=$HOME/.nodebrew/current/npm/bin:$PATH
+export RBENV_ROOT=/usr/local/rbenv
+export PATH=$RBENV_ROOT/.rbenv/bin:$HOME/local/bin:$PATH
+eval "$(rbenv init -)"
+export PATH=$HOME/.composer/vendor/bin:$PATH
 
 # -------------------------------------
 # プロンプト
@@ -127,6 +131,9 @@ alias l1="ls -1"
 # tree
 alias tree="tree -NC" # N: 文字化け対策, C:色をつける
 
+
+#for rails
+alias be="bundle exec"
 
 # -------------------------------------
 # キーバインド
