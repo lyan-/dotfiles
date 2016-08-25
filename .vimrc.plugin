@@ -23,6 +23,7 @@ endif
 nmap <C-e> <C-y>,
 imap <C-e> <C-y>,
 vmap <C-e> <C-y>,
+nmap <C-a> v_<C-y>,
 
 let g:user_emmet_settings = {
     \    'variables': {
@@ -56,6 +57,7 @@ nmap ,uf :UniteWithBufferDir -buffer-name=files file file/new <return>
 nmap ,uc :Unite -auto-preview colorscheme<return>
 nmap ,us :Unite grep:. -buffer-name=search-buffer<CR>
 nmap ,ur :UniteResume<return>
+nnoremap ,ue :Unite file_rec/async:!<CR>
 
 let g:unite_enable_ignore_case = 1
 let g:unite_enable_smart_case = 1
@@ -84,14 +86,11 @@ function! s:config_customincsearch() abort
   \}
 endfunction
 
-" nerdtree
-map <silent> <C-n> :NERDTreeFocus<cr>
+" NERDTree
+nnoremap <silent><C-n> :NERDTreeFocus<cr>
 
 " vim-rooter
 let g:rooter_patterns = ['.git/']
-
-" switch
-nnoremap - :Switch<cr>
 
 " vim-ref
 " vim-ref のバッファを q で閉じられるようにする
@@ -130,3 +129,5 @@ nmap ,rw :Ref webdict w
 
 " disable folding markdown
 let g:vim_markdown_folding_disabled = 1
+
+

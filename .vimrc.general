@@ -39,7 +39,11 @@ set fileencodings=utf-8,sjis,ucs-bom,iso-2022-jp,cp932,euc-jp,default,latin
 set list
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 set t_Co=256
-
+set display=lastline
+set pumheight=10
+set showmatch
+set matchtime=1
+"
 " gf
 set includeexpr=substitute(v:fname,'$','.ts','')
 
@@ -50,6 +54,7 @@ set undofile
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\""
 au BufRead,BufNewFile *.md set filetype=markdown
 let g:previm_open_cmd = 'open -a Google\ Chrome'
+"
 " Keymaps all
 map R <Plug>(operator-replace)
 
@@ -58,10 +63,15 @@ nmap j gj
 nmap k gk
 nmap > >>
 nmap < <<
+"buffer next
 nmap <S-k> :bn <return>
+"buffer previous
 nmap <S-j> :bp <return>
 nmap <C-c> :bdelete <return>
+"
+" clear highlights after search
 nmap <C-m> :nohl <return>
+
 nmap <Leader>r :QuickRun <return>
 nmap ,gc :Gcommit <return>
 nmap ,gs :Gstatus <return>
@@ -79,7 +89,12 @@ vmap < <gv
 " [jj] - back to normal mode
 imap <silent> jj <ESC>
 
+" [Y] - yank current line
+nnoremap Y y$
+
+" [-, +] - increment and decrement alias
+nnoremap + <C-a>
+nnoremap - <C-a>
+
 " clear window
 nnoremap <Leader>l :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
-
-nnoremap <silent><C-n> :NERDTreeFocus<cr>
