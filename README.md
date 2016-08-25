@@ -19,6 +19,13 @@ brew install zsh
 ```
 
 ## Set zsh as login shell
+
+Append a following line in **/etc/shells**
+```
+/usr/local/bin/zsh
+```
+
+Then, exec change shell command
 ```
 chsh -s /usr/local/bin/zsh
 ```
