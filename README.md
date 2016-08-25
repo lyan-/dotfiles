@@ -70,3 +70,71 @@ https://github.com/suan/vim-instant-markdown
 
 2. Press `prefix + I` to install tmux-plugins
 
+## other requirements(some plugins)
+1. ``` brew install w3m ```
+
+---
+
+# Commands / ShortCuts
+
+## Terminal(zsh)
+
+- **up** : cd ../; ls -l
+- **u** : cd ~
+- **f** : open current directory in Finder
+- **cdf** : cd to current directory in active Finder
+- **z [fuzzy word]** : cd to matching dir with [fuzzy word] from history
+- **j** : alias for z
+- **la** : ls -la
+- **be** : bundle exec(Rails)
+
+## Vim
+
+### Unite Commands
+
+- **,ue** : Unite file_rec/async:!
+- **,ub** : Unite buffer
+- **,uh** : Unite file_mru
+- **,ul** : Unite locate
+- **,uf** : UniteWithBufferDir -buffer-name=files file file/new
+- **,uc** : Unite -auto-preview colorscheme
+- **,us** : Unite grep:. -buffer-name=search-buffer
+- **,ur** : UniteResume
+
+### Other Filer Commands
+
+- **\<C-p>** : CtrlP 
+- **\<C-n>** : NerdTree
+
+### Jump at 2 Letters and Incrimental Find Letter
+
+- **s {char}\*2** : Jump at {char}*2 (EasyMotion)
+- **f {char}** : find the {char} forward, press **f** more to jump forward incrimentally (clever-f)
+
+### Emmet Commands
+
+- **\<C-e>** : Expand an Abbreviation
+- **\<C-a>** : Wrap with an Abbreviation
+
+### Buffer Commands
+
+- **\<S-k>** : next buffer
+- **\<S-j>** : previous buffer
+- **\<C-c>** : delete buffer
+
+### Utilities
+
+- **jj** : change to Normal mode(alias \<esc>)
+- **Y** : yank a line
+- **+** : incriment(alias \<C-a>)
+- **-** : decrement(alias \<C-x>)
+- **\s** : reload ~/.vimrc
+- **-** : decrement(alias \<C-x>)
+- **\<C-m>** : [after searching] clear hightlights
+
+### Dictionery Commands
+
+- **,rej** {words} [Enter] : English Japanese Dictionery
+- **,rje** {words} [Enter] : Japanese English Dictionery
+- **,rew** {words} [Enter] : Wikipedia
+
