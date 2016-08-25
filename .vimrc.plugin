@@ -23,7 +23,6 @@ endif
 nmap <C-e> <C-y>,
 imap <C-e> <C-y>,
 vmap <C-e> <C-y>,
-nmap <C-a> v_<C-y>,
 
 let g:user_emmet_settings = {
     \    'variables': {
