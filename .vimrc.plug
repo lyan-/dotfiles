@@ -20,6 +20,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'Shougo/unite.vim'
   Plug 'ujihisa/unite-colorscheme'
   Plug 'ujihisa/unite-locate'
+  Plug 'basyura/unite-rails'
+  Plug 'tsukkee/unite-tag'
 
   " CtrlP
   Plug 'ctrlpvim/ctrlp.vim'
@@ -46,6 +48,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'epmatsw/ag.vim'
   Plug 'rhysd/clever-f.vim'
   Plug 'kana/vim-smartinput'
+  Plug 'cohama/vim-smartinput-endwise'
   Plug 'thinca/vim-qfreplace'
   Plug 'thinca/vim-quickrun'
   Plug 'mhinz/vim-signify'
@@ -55,6 +58,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'haya14busa/incsearch-fuzzy.vim'
   Plug 'haya14busa/incsearch-migemo.vim'
   Plug 'haya14busa/incsearch-easymotion.vim'
+  Plug 'tpope/vim-rails'
+
+  " ctags
+  Plug 'alpaca-tc/alpaca_tags'
 
   " Neoxxx
   Plug 'Shougo/neocomplete'
