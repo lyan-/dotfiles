@@ -93,6 +93,9 @@ https://github.com/suan/vim-instant-markdown
 - **la** : ls -la
 - **be** : bundle exec(Rails)
 
+- **^r^r** : Incrimental search from command history
+- **^r^h** : select from command history
+
 ## Vim
 
 ### Unite Commands
