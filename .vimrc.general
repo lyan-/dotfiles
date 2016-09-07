@@ -94,7 +94,7 @@ nnoremap Y y$
 
 " [-, +] - increment and decrement alias
 nnoremap + <C-a>
-nnoremap - <C-a>
+nnoremap - <C-x>
 
 " clear window
 nnoremap <Leader>l :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
