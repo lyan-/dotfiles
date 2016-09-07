@@ -67,7 +67,26 @@ nmap < <<
 nmap <S-k> :bn <return>
 "buffer previous
 nmap <S-j> :bp <return>
-nmap <C-c> :bdelete <return>
+
+function! GentleBufferDelete()
+  if &modified
+    echohl ErrorMsg
+    echomsg "No write since last change. Not closing buffe."
+    echohl NONE
+  else
+    let s:total_nr_buffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
+
+    if s:total_nr_buffers == 1
+      echo "Buffer was not deleted. This is last one."
+    else
+      bprevious
+      bdelete #
+      echo "Buffer deleted."
+    endif
+  endif
+endfunction
+
+nmap <C-c> :call GentleBufferDelete()<return>
 "
 " clear highlights after search
 nmap <C-m> :nohl <return>
