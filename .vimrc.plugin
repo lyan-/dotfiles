@@ -85,9 +85,6 @@ function! s:config_customincsearch() abort
   \}
 endfunction
 
-" NERDTree
-nnoremap <silent><C-n> :NERDTreeFocus<cr>
-
 " vim-rooter
 let g:rooter_patterns = ['.git/']
 
@@ -139,6 +136,9 @@ augroup AlpacaTags
     " autocmd BufWritePost * TagsUpdate
   endif
 augroup END
+
+" syntastic
+
 
 "------------------------------------
 " Unite-rails.vim

@@ -34,6 +34,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'derekwyatt/vim-scala'
   Plug 'jason0x43/vim-js-indent'
   Plug 'digitaltoad/vim-pug'
+  Plug 'scrooloose/syntastic'
 
   " Operators
   Plug 'kana/vim-operator-user'
@@ -80,7 +81,7 @@ call plug#begin('~/.vim/plugged')
 
   " Other
   Plug 'yuratomo/w3m.vim'
-  Plug 'Shougo/vimproc'
+  Plug 'Shougo/vimproc', {'do': 'make'}
   Plug 'airblade/vim-rooter'
   Plug 'suan/vim-instant-markdown'
   Plug 'mattn/webapi-vim'
@@ -88,6 +89,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'plasticboy/vim-markdown'
   Plug 'kannokanno/previm'
   Plug 'tyru/open-browser.vim'
-  Plug 'scrooloose/nerdtree'
+
+  "EditorConfig
+  Plug 'editorconfig/editorconfig-vim'
 
 call plug#end()

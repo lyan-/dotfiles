@@ -290,3 +290,4 @@ PROMPT='
 %(?.$.%F{red}$%f) '
 
 eval "$(rbenv init -)"
+eval "$(direnv hook zsh)"
