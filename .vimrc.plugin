@@ -163,3 +163,10 @@ aug MyAutoCmd
   au User Rails call UniteRailsSetting()
 aug END
 "}}}
+
+"------------------------------------
+" othree/javascript-libraries-syntax.vim
+"------------------------------------
+let g:used_javascript_libs = 'jquery,underscore,react,flux'
+" jquery, underscore(included lodash), backbone, prelude, angularjs, angularui, angularuirouter, react, flux, requirejs, sugar, jasmine, chai, handlebars, ramda
+
