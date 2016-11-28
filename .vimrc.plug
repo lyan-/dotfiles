@@ -38,6 +38,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'briancollins/vim-jst'
   Plug 'nono/vim-handlebars'
   Plug 'digitaltoad/vim-pug'
+  " Plug 'bendavis78/vim-polymer'
 
   Plug 'scrooloose/syntastic'
 
@@ -52,6 +53,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tComment'
   Plug 'Lokaltog/vim-easymotion'
   Plug 'epmatsw/ag.vim'
+  Plug 'lilydjwg/colorizer'
   Plug 'rhysd/clever-f.vim'
   Plug 'kana/vim-smartinput'
   Plug 'cohama/vim-smartinput-endwise'
