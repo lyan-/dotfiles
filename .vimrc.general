@@ -48,12 +48,6 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-
 " gf
 set includeexpr=substitute(v:fname,'$','.ts','')
 
@@ -63,7 +57,6 @@ set undofile
 
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\""
 au BufRead,BufNewFile *.md set filetype=markdown
-let g:previm_open_cmd = 'open -a Google\ Chrome'
 "
 " Keymaps all
 map R <Plug>(operator-replace)
@@ -77,26 +70,6 @@ nmap < <<
 nmap <S-k> :bn <return>
 "buffer previous
 nmap <S-j> :bp <return>
-
-function! GentleBufferDelete()
-  if &modified
-    echohl ErrorMsg
-    echomsg "No write since last change. Not closing buffe."
-    echohl NONE
-  else
-    let s:total_nr_buffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
-
-    if s:total_nr_buffers == 1
-      echo "Buffer was not deleted. This is last one."
-    else
-      bprevious
-      bdelete #
-      echo "Buffer deleted."
-    endif
-  endif
-endfunction
-
-nmap <C-c> :call GentleBufferDelete()<return>
 "
 " clear highlights after search
 nmap <C-m> :nohl <return>
@@ -127,3 +100,8 @@ nnoremap - <C-x>
 
 " clear window
 nnoremap <Leader>l :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
+
+" open .vimrc
+nnoremap \eg :edit ~/.vimrc.general<cr>
+nnoremap \ep :edit ~/.vimrc.plug<cr>
+nnoremap \el :edit ~/.vimrc.plugin<cr>

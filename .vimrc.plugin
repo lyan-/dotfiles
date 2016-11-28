@@ -20,6 +20,7 @@ if has('conceal')
 endif
 
 " emmet
+" let g:user_emmet_leader_key='<C-e>'
 nmap <C-e> <C-y>,
 imap <C-e> <C-y>,
 vmap <C-e> <C-y>,
@@ -138,7 +139,23 @@ augroup AlpacaTags
 augroup END
 
 " syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_auto_jump = 0
+
+let g:syntastic_html_checkers = ['tidy']
+let g:syntastic_html_exec = 'tidy5'
+
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = 'eslint_d'
+
+let g:previm_open_cmd = 'open -a Google\ Chrome'
 
 "------------------------------------
 " Unite-rails.vim
@@ -169,4 +186,24 @@ aug END
 "------------------------------------
 let g:used_javascript_libs = 'jquery,underscore,react,flux'
 " jquery, underscore(included lodash), backbone, prelude, angularjs, angularui, angularuirouter, react, flux, requirejs, sugar, jasmine, chai, handlebars, ramda
+
+function! GentleBufferDelete()
+  if &modified
+    echohl ErrorMsg
+    echomsg "No write since last change. Not closing buffe."
+    echohl NONE
+  else
+    let s:total_nr_buffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
+
+    if s:total_nr_buffers == 1
+      echo "Buffer was not deleted. This is last one."
+    else
+      bprevious
+      bdelete #
+      echo "Buffer deleted."
+    endif
+  endif
+endfunction
+
+nmap <C-c> :call GentleBufferDelete()<return>
 
