@@ -105,3 +105,5 @@ nnoremap <Leader>l :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
 nnoremap \eg :edit ~/.vimrc.general<cr>
 nnoremap \ep :edit ~/.vimrc.plug<cr>
 nnoremap \el :edit ~/.vimrc.plugin<cr>
+
+autocmd BufNewFile,BufRead *.vue set filetype=html

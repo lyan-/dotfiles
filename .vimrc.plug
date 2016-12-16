@@ -23,7 +23,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'basyura/unite-rails'
   Plug 'tsukkee/unite-tag'
 
-  " CtrlP
+  " Ctrlp
   Plug 'ctrlpvim/ctrlp.vim'
 
   " Syntax
@@ -39,6 +39,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'nono/vim-handlebars'
   Plug 'digitaltoad/vim-pug'
   " Plug 'bendavis78/vim-polymer'
+
 
   Plug 'scrooloose/syntastic'
 
@@ -67,6 +68,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'haya14busa/incsearch-migemo.vim'
   Plug 'haya14busa/incsearch-easymotion.vim'
   Plug 'tpope/vim-rails'
+
+  Plug 'posva/vim-vue'
 
   " ctags
   Plug 'alpaca-tc/alpaca_tags'

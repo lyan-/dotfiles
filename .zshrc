@@ -54,7 +54,7 @@ setopt auto_cd
 # -------------------------------------
 
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
-export M2_HOME=$HOME/tool/apache-maven-3.2.5
+export M2_HOME=$HOME/maven/3.3.9
 export PATH=$PATH:$M2_HOME/bin 
 
 # 重複する要素を自動的に削除
@@ -75,10 +75,13 @@ export PATH=$HOME/.npm/bin:$PATH
 # ruby
 export RBENV_ROOT=/usr/local/rbenv
 export PATH=$RBENV_ROOT/.rbenv/bin:$HOME/local/bin:$PATH
-eval "$(rbenv init -)"
+
+# golang
+export PATH=/usr/local/opt/go/libexec/bin:$PATH
 
 # PHP
 export PATH=$HOME/.composer/vendor/bin:$PATH
+
 
 # -------------------------------------
 # プロンプト
@@ -156,6 +159,7 @@ alias be="bundle exec"
 alias up="cd ..; ls -l"
 alias f="open ."
 alias u="cd ~"
+alias p="cd ~/Projects"
 
 alias j="z"
 
