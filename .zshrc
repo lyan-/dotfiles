@@ -13,6 +13,10 @@ export EDITOR=/usr/local/bin/vim
 export PAGER=/usr/local/bin/vimpager
 export MANPAGER=/usr/local/bin/vimpager
 
+# POWERLINE
+export POWERLINE_CONFIG_COMMAND="/usr/local/bin/powerline-config"
+export POWERLINE_COMMAND=powerline
+
 # -------------------------------------
 # zshのオプション
 # -------------------------------------
@@ -154,6 +158,7 @@ alias vi="/usr/local/bin/vim"
 
 #ruby bundler
 alias be="bundle exec"
+alias bi="bundle install"
 
 #util
 alias up="cd ..; ls -l"
@@ -292,6 +297,25 @@ function vcs_echo {
 PROMPT='
 %F{yellow}[%~]%f `vcs_echo`
 %(?.$.%F{red}$%f) '
+
+# Generate a new Jekyll post
+#
+# @param $1 - Post slug
+# @param $2 - Post title
+function new-post {
+  post="_posts/$(date +%Y-%m-%d)-$1.md"
+  if [[ -f "$post" ]]; then
+    echo "Post '$1' already exists"
+  else
+    touch "$post"
+    echo "---" >> $post
+    echo "layout: post" >> $post
+    echo "title: \"$2\"" >> $post
+    echo "date: $(date +'%Y-%m-%d %H:%M:%S %z')" >> $post
+    echo "---" >> $post
+    echo "Created post '$1'"
+  fi
+}
 
 eval "$(rbenv init -)"
 eval "$(direnv hook zsh)"

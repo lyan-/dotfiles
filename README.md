@@ -1,8 +1,3 @@
-# The Original Dotfiles
-
-thanks thrbrd.
-https://github.com/thrbrd/dotfiles
-
 # Usage
 
 1. Install homebrew  
@@ -160,3 +155,5 @@ https://github.com/suan/vim-instant-markdown
 - **,rje** {words} [Enter] : Japanese English Dictionery
 - **,rew** {words} [Enter] : Wikipedia
 
+# The Original Dotfiles
+https://github.com/thrbrd/dotfiles

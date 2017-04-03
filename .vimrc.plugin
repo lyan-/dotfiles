@@ -143,18 +143,32 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_auto_jump = 0
+let g:syntastic_enable_signs = 1
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
 
 let g:syntastic_html_checkers = ['tidy']
 let g:syntastic_html_exec = 'tidy5'
-
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exec = 'eslint_d'
-
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_mode_map = {
+      \ 'mode': 'active',
+      \ 'active_filetypes': ['javascript'],
+      \ 'passive_filetypes': ['html']
+      \}
+let g:syntastic_html_tidy_ignore_errors = [
+      \ '> is not recognized!',
+      \ 'discarding unexpected <paper',
+      \ 'discarding unexpected </paper',
+      \ 'discarding unexpected <dom-module',
+      \ 'discarding unexpected <template',
+      \ 'discarding unexpected <iron',
+      \]
 let g:previm_open_cmd = 'open -a Google\ Chrome'
 
 "------------------------------------
@@ -207,3 +221,15 @@ endfunction
 
 nmap <C-c> :call GentleBufferDelete()<return>
 
+"------------------------------------
+" :Jq
+"------------------------------------
+command! -nargs=? Jq call s:Jq(<f-args>)
+function! s:Jq(...)
+    if 0 == a:0
+        let l:arg = "."
+    else
+        let l:arg = a:1
+    endif
+    execute "%! jq \"" . l:arg . "\""
+endfunction
