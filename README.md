@@ -72,6 +72,7 @@ https://github.com/suan/vim-instant-markdown
 
 ## other requirements(some plugins)
 1. ``` brew install w3m ```
+1. ``` brew install reattach-to-user-namespace```
 
 ---
 

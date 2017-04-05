@@ -44,8 +44,10 @@ setopt no_tify
 setopt hist_ignore_dups
 
 # 補完
-## タブによるファイルの順番切り替えをしない
-unsetopt auto_menu
+setopt auto_menu
+setopt auto_param_keys
+setopt auto_param_slash
+setopt mark_dirs
 
 # cd -[tab]で過去のディレクトリにひとっ飛びできるようにする
 setopt auto_pushd
@@ -57,9 +59,9 @@ setopt auto_cd
 # パス
 # -------------------------------------
 
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
-export M2_HOME=$HOME/maven/3.3.9
-export PATH=$PATH:$M2_HOME/bin 
+# export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+# export M2_HOME=$HOME/maven/3.3.9
+# export PATH=$PATH:$M2_HOME/bin 
 
 # 重複する要素を自動的に削除
 typeset -U path cdpath fpath manpath
@@ -85,6 +87,10 @@ export PATH=/usr/local/opt/go/libexec/bin:$PATH
 
 # PHP
 export PATH=$HOME/.composer/vendor/bin:$PATH
+
+# Python
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
 
 
 # -------------------------------------
@@ -142,6 +148,7 @@ alias grep="grep --color -n -I --exclude='*.svn-*' --exclude='entries' --exclude
 # ls
 alias ls="LC_COLLATE=C ls -G" # color for darwin
 alias l="ls -la"
+alias ll="ls -l"
 alias la="ls -la"
 alias l1="ls -1"
 
@@ -221,7 +228,7 @@ function peco-select-history() {
     eval $tac | \
     peco -query "$LBUFFER")
   CURSOR=$#BUFFER
-  zle clear-secreen
+  zle clear-screen
 }
 zle -N peco-select-history
 bindkey '^r' peco-select-history
@@ -243,9 +250,9 @@ function title {
     echo -ne "\033]0;"$*"\007"
 }
 
-source ~/.zplug/zplug
+source ~/.zplug/init.zsh
 
-zplug "zsh-users/zsh-syntax-highlighting", nice:10
+zplug "zsh-users/zsh-syntax-highlighting", defer:1
 zplug "zsh-users/zsh-completions"
 zplug "plugins/git", from:oh-my-zsh
 zplug "mollifier/anyframe"
@@ -256,10 +263,9 @@ if ! zplug check --verbose; then
         echo; zplug install
     fi
 fi
-zplug load --verbose
+zplug load
 
 bindkey -e
-setopt auto_cd
 
 bindkey '^r^h' anyframe-widget-execute-history
 bindkey '^r^b' anyframe-widget-checkout-git-branch
@@ -267,7 +273,14 @@ bindkey '^r^f' anyframe-widget-cdr
 
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
+
+# 補完
+zstyle ':completion:*' verbose yes
 zstyle ':completion:*' recent-dirs-insert both
+zstyle ':completion:*' use-cache true
+zstyle ':completion:*' completer _complete _expand _match _prefix _list _history _approximate
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
+
 zstyle ':chpwd:*' recent-dirs-max 500
 zstyle ':chpwd:*' recent-dirs-default true
 zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/shell/chpwd-recent-dirs"
@@ -319,3 +332,4 @@ function new-post {
 
 eval "$(rbenv init -)"
 eval "$(direnv hook zsh)"
+# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
