@@ -5,7 +5,7 @@ let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'javascript' : '~/dotfiles/.neocon-snippets/javascript.snip'
 \ }
 let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory='~/dotfiles/.neocon-snippets/'
+let g:neosnippet#snippets_directory='~/dotfiles/.neocon-snippets'
 
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
@@ -198,7 +198,7 @@ aug END
 "------------------------------------
 " othree/javascript-libraries-syntax.vim
 "------------------------------------
-let g:used_javascript_libs = 'jquery,underscore,react,flux'
+let g:used_javascript_libs = 'jquery,underscore,react,flux,jasmine,chai'
 " jquery, underscore(included lodash), backbone, prelude, angularjs, angularui, angularuirouter, react, flux, requirejs, sugar, jasmine, chai, handlebars, ramda
 
 function! GentleBufferDelete()
