@@ -1,8 +1,3 @@
-# The Original Dotfiles
-
-thanks thrbrd.
-https://github.com/thrbrd/dotfiles
-
 # Usage
 
 1. Install homebrew  
@@ -77,6 +72,7 @@ https://github.com/suan/vim-instant-markdown
 
 ## other requirements(some plugins)
 1. ``` brew install w3m ```
+1. ``` brew install reattach-to-user-namespace```
 
 ---
 
@@ -160,3 +156,5 @@ https://github.com/suan/vim-instant-markdown
 - **,rje** {words} [Enter] : Japanese English Dictionery
 - **,rew** {words} [Enter] : Wikipedia
 
+# The Original Dotfiles
+https://github.com/thrbrd/dotfiles
