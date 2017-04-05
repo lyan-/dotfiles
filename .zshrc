@@ -38,15 +38,25 @@ setopt prompt_subst
 setopt ignoreeof
 
 ## バックグラウンドジョブが終了したらすぐに知らせる。
-setopt no_tify
+setopt notify
 
 ## 直前と同じコマンドをヒストリに追加しない
 setopt hist_ignore_dups
+setopt hist_reduce_blanks
+setopt hist_verify
+setopt append_history
+setopt share_history
+setopt extended_history
 
 # 補完
+setopt auto_list
 setopt auto_menu
 setopt auto_param_keys
-setopt auto_param_slash
+
+setopt complete_in_word
+
+setopt glob
+setopt extended_glob
 setopt mark_dirs
 
 # cd -[tab]で過去のディレクトリにひとっ飛びできるようにする
@@ -54,6 +64,10 @@ setopt auto_pushd
 
 # ディレクトリ名を入力するだけでcdできるようにする
 setopt auto_cd
+
+unsetopt list_beep
+
+REPORTTIME=3
 
 # -------------------------------------
 # パス
@@ -252,7 +266,8 @@ function title {
 
 source ~/.zplug/init.zsh
 
-zplug "zsh-users/zsh-syntax-highlighting", defer:1
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "zsh-users/zaw"
 zplug "zsh-users/zsh-completions"
 zplug "plugins/git", from:oh-my-zsh
 zplug "mollifier/anyframe"
@@ -263,15 +278,18 @@ if ! zplug check --verbose; then
         echo; zplug install
     fi
 fi
-zplug load
 
 bindkey -e
+
+function toon {
+  echo -n ""
+}
 
 bindkey '^r^h' anyframe-widget-execute-history
 bindkey '^r^b' anyframe-widget-checkout-git-branch
 bindkey '^r^f' anyframe-widget-cdr
 
-autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook is-at-least
 add-zsh-hook chpwd chpwd_recent_dirs
 
 # 補完
@@ -281,10 +299,12 @@ zstyle ':completion:*' use-cache true
 zstyle ':completion:*' completer _complete _expand _match _prefix _list _history _approximate
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
 
-zstyle ':chpwd:*' recent-dirs-max 500
+zstyle ':chpwd:*' recent-dirs-max 5000
 zstyle ':chpwd:*' recent-dirs-default true
 zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/shell/chpwd-recent-dirs"
 zstyle ':chpwd:*' recent-dirs-pushd true
+
+zplug load
 
 # prompt style
 autoload -Uz vcs_info
@@ -329,6 +349,42 @@ function new-post {
     echo "Created post '$1'"
   fi
 }
+#
+### zaw
+bindkey '^[d' zaw-cdr
+bindkey '^[g' zaw-git-branches
+bindkey '^[@' zaw-gitdir
+
+function zaw-src-gitdir () {
+    _dir=$(git rev-parse --show-cdup 2>/dev/null)
+    if [ $? -eq 0 ]
+    then
+        candidates=( $(git ls-files ${_dir} | perl -MFile::Basename -nle \
+                                                   '$a{dirname $_}++; END{delete $a{"."}; print for sort keys %a}') )
+    fi
+
+    actions=("zaw-src-gitdir-cd")
+    act_descriptions=("change directory in git repos")
+}
+
+function zaw-src-gitdir-cd () {
+    BUFFER="cd $1"
+    zle accept-line
+}
+
+zaw-register-src -n gitdir zaw-src-gitdir
+
+alias '..'='cd ..'
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+
+alias -g G='| grep'
+alias -g L='| less'
+alias -g H='| head'
+alias -g T='| tail'
+alias -g S='| sed'
+alias -g C='| cat'
 
 eval "$(rbenv init -)"
 eval "$(direnv hook zsh)"
