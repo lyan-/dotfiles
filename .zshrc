@@ -152,6 +152,20 @@ PROMPT+="%% "
 
 RPROMPT="[%*]"
 
+# Support for bash
+PROMPT_COMMAND='prompt'
+
+# Mirrored support for zsh. See: https://superuser.com/questions/735660/whats-the-zsh-equivalent-of-bashs-prompt-command/735969#735969 
+precmd() { eval "$PROMPT_COMMAND" }
+
+function prompt()
+{
+    if [ "$PWD" != "$MYOLDPWD" ]; then
+        MYOLDPWD="$PWD"
+        test -e .venv && workon `cat .venv`
+    fi
+}
+
 # -------------------------------------
 # エイリアス
 # -------------------------------------
@@ -240,7 +254,7 @@ function peco-select-history() {
   fi
   BUFFER=$(\history -n 1 | \
     eval $tac | \
-    peco -query "$LBUFFER")
+    peco --query "$LBUFFER")
   CURSOR=$#BUFFER
   zle clear-screen
 }
@@ -373,6 +387,7 @@ function zaw-src-gitdir-cd () {
 }
 
 zaw-register-src -n gitdir zaw-src-gitdir
+
 
 alias '..'='cd ..'
 alias -g ...='../..'

@@ -16,7 +16,7 @@ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 nmap <Space>nes :NeoSnippetEdit<return>
 
 if has('conceal')
-  set conceallevel=2 concealcursor=i
+  set conceallevel=1 concealcursor=
 endif
 
 " emmet
@@ -233,3 +233,32 @@ function! s:Jq(...)
     endif
     execute "%! jq \"" . l:arg . "\""
 endfunction
+
+
+"------------------------------------
+" Indent Guides
+"------------------------------------
+hi IndentGuidesOdd  ctermbg=233
+hi IndentGuidesEven ctermbg=234
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'tagbar', 'unite', 'json']
+
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+
+"------------------------------------
+" typescript
+"------------------------------------
+let g:TSS = ['tss','--module','commonjs']
+let g:neocomplete#sources#omni#input_patterns.typescript = '\h\w*\|[^. \t]\.\w*'
