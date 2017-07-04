@@ -5,7 +5,7 @@ let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'javascript' : '~/dotfiles/.neocon-snippets/javascript.snip'
 \ }
 let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory='~/dotfiles/.neocon-snippets/'
+let g:neosnippet#snippets_directory='~/dotfiles/.neocon-snippets'
 
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
@@ -16,7 +16,7 @@ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 nmap <Space>nes :NeoSnippetEdit<return>
 
 if has('conceal')
-  set conceallevel=2 concealcursor=i
+  set conceallevel=1 concealcursor=
 endif
 
 " emmet
@@ -198,7 +198,7 @@ aug END
 "------------------------------------
 " othree/javascript-libraries-syntax.vim
 "------------------------------------
-let g:used_javascript_libs = 'jquery,underscore,react,flux'
+let g:used_javascript_libs = 'jquery,underscore,react,flux,jasmine,chai'
 " jquery, underscore(included lodash), backbone, prelude, angularjs, angularui, angularuirouter, react, flux, requirejs, sugar, jasmine, chai, handlebars, ramda
 
 function! GentleBufferDelete()
@@ -233,3 +233,32 @@ function! s:Jq(...)
     endif
     execute "%! jq \"" . l:arg . "\""
 endfunction
+
+
+"------------------------------------
+" Indent Guides
+"------------------------------------
+hi IndentGuidesOdd  ctermbg=233
+hi IndentGuidesEven ctermbg=234
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'tagbar', 'unite', 'json']
+
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+
+"------------------------------------
+" typescript
+"------------------------------------
+let g:TSS = ['tss','--module','commonjs']
+let g:neocomplete#sources#omni#input_patterns.typescript = '\h\w*\|[^. \t]\.\w*'

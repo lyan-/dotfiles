@@ -45,16 +45,21 @@ call plug#begin('~/.vim/plugged')
   " Plug 'nono/vim-handlebars'
   Plug 'digitaltoad/vim-pug'
   " Plug 'bendavis78/vim-polymer'
+  Plug 'Quramy/tsuquyomi'
+  Plug 'leafgarland/typescript-vim'
+  Plug 'clausreinke/typescript-tools.vim', {'do': 'npm install'}
+
+  Plug 'vim-scripts/AnsiEsc.vim'
 
   " Operators
   Plug 'kana/vim-operator-user'
   Plug 'kana/vim-operator-replace'
 
   " For coding
-  Plug 'matchit.zip'
+  Plug 'vim-scripts/matchit.zip'
   Plug 'mattn/emmet-vim'
-  Plug 'surround.vim'
-  Plug 'tComment'
+  Plug 'vim-scripts/surround.vim'
+  Plug 'vim-scripts/tComment'
   Plug 'Lokaltog/vim-easymotion'
   Plug 'epmatsw/ag.vim'
   Plug 'lilydjwg/colorizer'
@@ -73,6 +78,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-rails'
 
   Plug 'posva/vim-vue'
+
+  " indent guides
+  Plug 'nathanaelkane/vim-indent-guides'
 
   " ctags
   Plug 'alpaca-tc/alpaca_tags'
