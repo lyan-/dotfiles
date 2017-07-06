@@ -13,10 +13,6 @@ export EDITOR=/usr/local/bin/vim
 export PAGER=/usr/local/bin/vimpager
 export MANPAGER=/usr/local/bin/vimpager
 
-# POWERLINE
-export POWERLINE_CONFIG_COMMAND="/usr/local/bin/powerline-config"
-export POWERLINE_COMMAND=powerline
-
 # -------------------------------------
 # zshのオプション
 # -------------------------------------
@@ -91,6 +87,7 @@ path=(
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 export PATH=$HOME/.nodebrew/current/npm/bin:$PATH
 export PATH=$HOME/.npm/bin:$PATH
+export PATH=$HOME/.tmux/bin:$PATH
 
 # ruby
 export RBENV_ROOT=/usr/local/rbenv
@@ -103,8 +100,17 @@ export PATH=/usr/local/opt/go/libexec/bin:$PATH
 export PATH=$HOME/.composer/vendor/bin:$PATH
 
 # Python
-export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
+export WORKON_HOME=$HOME/.virtualenvs
+export PATH=$HOME/Library/Python/2.7/bin:$PATH
+
+# -------------------------------------
+# PowerLine
+# -------------------------------------
+powerline-daemon -q
+export POWERLINE_CONFIG_COMMAND=powerline-config
+export POWERLINE_COMMAND=powerline
+. ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh
 
 
 # -------------------------------------

@@ -1,21 +1,21 @@
 # Usage
 
 1. Install homebrew  
-``` ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" ```  
-or http://brew.sh/
-1. Install git if you not installed it yet  
-``` brew install git ```
+```$ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" ```  
+or go http://brew.sh/
+1. Install git if you've not installed it yet  
+```$ brew install git ```
 1. Install homesick  
-``` sudo gem install homesick ```
+```$ sudo gem install homesick ```
 1. Clone dotfiles repository  
-``` homesick clone https://github.com/lyan-/dotfiles.git ~/dotfiles ```
+```$ homesick clone https://github.com/lyan-/dotfiles.git ~/dotfiles ```
 1. Press the command ``` sh ~/dotfiles/init.sh ```
 
 ## option
 
 1. Install zsh via homebrew
 ```
-brew install zsh
+$ brew install zsh
 ```
 
 ## Set zsh as login shell
@@ -27,7 +27,7 @@ Append a following line in **/etc/shells**
 
 Then, exec change shell command
 ```
-chsh -s /usr/local/bin/zsh
+$ chsh -s /usr/local/bin/zsh
 ```
 
 ## Zplug
@@ -38,41 +38,64 @@ if zsh throws errors like 'no such directory or file .zplug'
 
 ### or... Install zplug via homebrew
 ```
-brew install zplug
+$ brew install zplug
 ```
 
 ## Z
 
-1. ``` brew install z```
+1. ```$ brew install z```
+1. ```$ mkdir .cache/shell```
+1. ```$ j A_PART_OF_DIRECTORY_NAME```
+1. no need for more ```cd```, never.
+
+## Peco 
+
+1. ```$ brew install peco```
+2. Let you do ```C+r```
 
 # Vim...
 
-1. ``` vim ```
+1. ``` $ vim ```
 2. ``` :PlugInstall ```
 3. Done
 
 >Requirements: the NEW vim with lua (so this is not preinstalled on macOSX)
 
 ## how replace the old vim with the new one -with-lua
-1. ``` brew install lua ```
-2. ``` brew reinstall vim --with-lua ```
+1. ```$ brew install lua ```
+2. ```$ brew reinstall vim --with-lua ```
 3. Done
 
+## Install the Font
+[RictyDiminished-for-Powerline by mzyy94](https://github.com/mzyy94/RictyDiminished-for-Powerline)
+
+## Fasten KeyRepeat / InitialKeyRepeat
+
+```
+$ defaults write NSGlobalDomain InitialKeyRepeat -int 15
+$ defaults write -g KeyRepeat -int 1
+```
+
 ## markdown viewer for vim
-```npm -g install instant-markdown-d```
+```$ npm -g install instant-markdown-d```
 https://github.com/suan/vim-instant-markdown
 
+## Powerline
+```
+$ brew install python
+$ pip install --user git+git://github.com/powerline/powerline
+```
+[Doc](http://powerline.readthedocs.io/en/master/installation.html)
 
 # Setting Tmux
 
-1. Clone TPM:
-    $ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+1. Clone TPM: ```$ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm```
 
-2. Press `prefix + I` to install tmux-plugins
+2. launch tmux session, `prefix + I` to install tmux-plugins
 
 ## other requirements(some plugins)
-1. ``` brew install w3m ```
 1. ``` brew install reattach-to-user-namespace```
+1. ~~``` brew install w3m ```~~
 
 ---
 
@@ -85,7 +108,7 @@ https://github.com/suan/vim-instant-markdown
 - **f** : open current directory in Finder
 - **cdf** : cd to current directory in active Finder
 - **z [fuzzy word]** : cd to matching dir with [fuzzy word] from history
-- **j** : alias for z
+- **j** : alias of z
 - **la** : ls -la
 - **be** : bundle exec(Rails)
 
