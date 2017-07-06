@@ -4,13 +4,13 @@ user_config_path=~/.config/powerline
 script_dir="$(cd "$(dirname "${BASH_SOURCE:-$0}")"; pwd)"
 config_path=$(pip show powerline-status | grep '\(/.\+/site-packages/\?\)$' -o)
 
-pip install powerline-status
+pip install --user powerline-status
 
 if [ "${#config_path}" -eq 0 ]; then
   config_path=$(pip show powerline-status | grep '\(/.\+/site-packages/\?\)$' -o)
 fi
 
-pip install netifaces
+pip install --user netifaces psutil
 
 if [ -e $user_config_path ]; then
   if [ -e $user_config_path ]; then
