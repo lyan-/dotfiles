@@ -110,8 +110,6 @@ export PATH=$HOME/Library/Python/2.7/bin:$PATH
 powerline-daemon -q
 export POWERLINE_CONFIG_COMMAND=powerline-config
 export POWERLINE_COMMAND=powerline
-. ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh
-
 
 # -------------------------------------
 # プロンプト
