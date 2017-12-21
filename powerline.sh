@@ -12,12 +12,12 @@ fi
 
 pip install --user netifaces psutil
 
-if [ -e $user_config_path ]; then
+if [ -e $config_path ]; then
   if [ -e $user_config_path ]; then
     echo "user config file already exist"
   else
     mkdir $user_config_path
-    cp -R "${config_path%/}/powerline/config_files/*" $user_config_path
+    cp -R "${config_path%/}/powerline/config_files" $user_config_path
   fi
 else
   echo "config_files doesn't exist. please check $script_dir and change config_path variable to your powerline"
