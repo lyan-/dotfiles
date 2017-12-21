@@ -46,6 +46,12 @@ let g:EasyMotion_use_upper = 1
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_use_smartsign_us = 1
 
+" racer-rust
+
+set hidden
+let g:racer_cmd = "$HOME/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
+
 " clever-f
 let g:clever_f_use_migemo = 1
 
@@ -153,6 +159,8 @@ let g:syntastic_enable_signs = 1
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 
+" let g:syntastic_rust_checkers = ['cargo']
+
 let g:syntastic_html_checkers = ['tidy']
 let g:syntastic_html_exec = 'tidy5'
 let g:syntastic_javascript_checkers = ['jshint']
@@ -250,6 +258,7 @@ autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable heavy omni completion.
@@ -257,6 +266,10 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
 endif
 
+"rsenseのインストールフォルダがデフォルトと異なるので設定
+let g:rsenseHome = expand("*Rsenseのインストールパスをここにペースト*")
+let g:rsenseUseOmniFunc = 1
+"
 "------------------------------------
 " typescript
 "------------------------------------

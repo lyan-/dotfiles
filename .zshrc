@@ -87,6 +87,7 @@ path=(
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 export PATH=$HOME/.nodebrew/current/npm/bin:$PATH
 export PATH=$HOME/.npm/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.tmux/bin:$PATH
 
 # ruby
@@ -104,13 +105,22 @@ source /usr/local/bin/virtualenvwrapper.sh
 export WORKON_HOME=$HOME/.virtualenvs
 export PATH=$HOME/Library/Python/2.7/bin:$PATH
 
+# Rust
+export PATH=$HOME/.cargo/bin:$PATH
+export RUST_SRC_PATH=$HOME/.multirust/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src
+
+# gettext
+export PATH="/usr/local/opt/gettext/bin:$PATH"
+
+# Sqlite
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
+
 # -------------------------------------
 # PowerLine
 # -------------------------------------
 powerline-daemon -q
 export POWERLINE_CONFIG_COMMAND=powerline-config
 export POWERLINE_COMMAND=powerline
-. ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh
 
 
 # -------------------------------------
@@ -150,7 +160,7 @@ NG="X_X "
 
 PROMPT=""
 PROMPT+="%(?.%F{green}$OK%f.%F{red}$NG%f) "
-PROMPT+="%F{blue}%~%f"
+PROMPT+="%K{blue}%~%k"
 PROMPT+="\$(vcs_prompt_info)"
 PROMPT+="
 "
@@ -318,6 +328,7 @@ zstyle ':completion:*' recent-dirs-insert both
 zstyle ':completion:*' use-cache true
 zstyle ':completion:*' completer _complete _expand _match _prefix _list _history _approximate
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 zstyle ':chpwd:*' recent-dirs-max 5000
 zstyle ':chpwd:*' recent-dirs-default true
@@ -350,6 +361,9 @@ function vcs_echo {
 PROMPT='
 %F{yellow}[%~]%f `vcs_echo`
 %(?.$.%F{red}$%f) '
+
+export LSCOLORS=gxfxcxdxbxegedabagacad
+export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 
 # Generate a new Jekyll post
 #
@@ -409,4 +423,5 @@ alias -g C='| cat'
 
 eval "$(rbenv init -)"
 eval "$(direnv hook zsh)"
-# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
