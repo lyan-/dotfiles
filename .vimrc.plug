@@ -63,7 +63,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-scripts/surround.vim'
   Plug 'vim-scripts/tComment'
   Plug 'Lokaltog/vim-easymotion'
-  Plug 'lilydjwg/colorizer'
+  " Plug 'lilydjwg/colorizer'
   Plug 'rhysd/clever-f.vim'
   Plug 'kana/vim-smartinput'
   Plug 'cohama/vim-smartinput-endwise'
