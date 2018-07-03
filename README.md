@@ -1,4 +1,9 @@
 # Usage
+## Requirements
+
+- zsh
+- vim8
+- python3
 
 1. Install homebrew  
 ```$ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" ```  
@@ -80,12 +85,11 @@ $ defaults write -g KeyRepeat -int 1
 ```$ npm -g install instant-markdown-d```
 https://github.com/suan/vim-instant-markdown
 
-## Powerline
+## Python
+2. Install zsh via homebrew
 ```
-$ brew install python
-$ pip install --user git+git://github.com/powerline/powerline
+$ brew install zsh
 ```
-[Doc](http://powerline.readthedocs.io/en/master/installation.html)
 
 # Setting Tmux
 
@@ -117,16 +121,14 @@ $ pip install --user git+git://github.com/powerline/powerline
 
 ## Vim
 
-### Unite Commands
+### Denite Commands
 
-- **,ue** : Unite file_rec/async:!
-- **,ub** : Unite buffer
-- **,uh** : Unite file_mru
-- **,ul** : Unite locate
-- **,uf** : UniteWithBufferDir -buffer-name=files file file/new
-- **,uc** : Unite -auto-preview colorscheme
-- **,us** : Unite grep:. -buffer-name=search-buffer
-- **,ur** : UniteResume
+- **,ub** :buffer
+- **,uh** :file_mru
+- **,uf** :-buffer-name=files file
+- **,uc** :-auto-preview colorscheme
+- **,us** :grep:. -buffer-name=search-buffer
+- **,ur** :resume
 
 #### Unite Rails Commands
 - nnoremap \<buffer>\<C-H>\<C-H>\<C-H>  :<C-U>Unite rails/view<CR>
@@ -165,7 +167,7 @@ $ pip install --user git+git://github.com/powerline/powerline
 
 ### Utilities
 
-- **jj** : change to Normal mode(alias \<esc>)
+- **jj** : change to Normal mode(\<esc> alias)
 - **Y** : yank a line
 - **+** : incriment(alias \<C-a>)
 - **-** : decrement(alias \<C-x>)

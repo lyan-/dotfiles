@@ -95,15 +95,18 @@ export RBENV_ROOT=/usr/local/rbenv
 export PATH=$RBENV_ROOT/.rbenv/bin:$HOME/local/bin:$PATH
 
 # golang
+export GOPATH=$HOME/go
+export PATH="$GOPATH/bin:$PATH"
 export PATH=/usr/local/opt/go/libexec/bin:$PATH
+export PATH="$HOME/.goenv/bin:$PATH"
 
 # PHP
 export PATH=$HOME/.composer/vendor/bin:$PATH
 
 # Python
-source /usr/local/bin/virtualenvwrapper.sh
-export WORKON_HOME=$HOME/.virtualenvs
 export PATH=$HOME/Library/Python/2.7/bin:$PATH
+export PYENV_ROOT=$HOME/.pyenv
+export PATH=$PYENV_ROOT/bin:$PATH
 
 # Rust
 export PATH=$HOME/.cargo/bin:$PATH
@@ -114,14 +117,6 @@ export PATH="/usr/local/opt/gettext/bin:$PATH"
 
 # Sqlite
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
-
-# -------------------------------------
-# PowerLine
-# -------------------------------------
-powerline-daemon -q
-export POWERLINE_CONFIG_COMMAND=powerline-config
-export POWERLINE_COMMAND=powerline
-
 
 # -------------------------------------
 # プロンプト
@@ -422,6 +417,8 @@ alias -g S='| sed'
 alias -g C='| cat'
 
 eval "$(rbenv init -)"
+eval "$(pyenv init -)"
+eval "$(goenv init -)"
 eval "$(direnv hook zsh)"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

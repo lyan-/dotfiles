@@ -4,6 +4,10 @@ filetype off
 filetype plugin on
 
 colorscheme molokai
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
 set guifont=Ricty_Diminished:h10
 set backspace=indent,eol,start
 set background=dark
@@ -14,6 +18,7 @@ set visualbell t_vb=
 set clipboard=unnamed
 set virtualedit=block
 set autoread
+set autochdir
 set nobackup
 set noswapfile
 set hlsearch
@@ -43,10 +48,6 @@ set display=lastline
 set pumheight=10
 set showmatch
 set matchtime=1
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
 " gf
 set includeexpr=substitute(v:fname,'$','.ts','')
@@ -106,8 +107,8 @@ nnoremap \eg :edit ~/.vimrc.general<cr>
 nnoremap \ep :edit ~/.vimrc.plug<cr>
 nnoremap \el :edit ~/.vimrc.plugin<cr>
 
-autocmd BufNewFile,BufRead *.vue set filetype=html
-autocmd BufNewFile,BufRead *.vue set filetype=html
+autocmd FileType vue syntax sync fromstart
+autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 autocmd BufNewFile,BufRead *.ts set filetype=typescript
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript
 
@@ -125,3 +126,8 @@ autocmd BufNewFile,BufRead * call s:DetectEjs()
 " -----------------------------------------
 
 nnoremap ,sc :<C-u>SyntasticCheck<CR>
+set redrawtime=10000
+
+filetype plugin indent on
+
+command! OpenBrowserCurrent execute "OpenBrowser" expand("%:p")
