@@ -90,7 +90,7 @@ vmap > >gv
 vmap < <gv
 
 " [jj] - back to normal mode
-imap <silent> jj <ESC>
+" imap <silent> jj <ESC>
 
 " [Y] - yank current line
 nnoremap Y y$

@@ -91,8 +91,7 @@ export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.tmux/bin:$PATH
 
 # ruby
-export RBENV_ROOT=/usr/local/rbenv
-export PATH=$RBENV_ROOT/.rbenv/bin:$HOME/local/bin:$PATH
+export PATH=$HOME/.rbenv/bin:$PATH
 
 # golang
 export GOPATH=$HOME/go
@@ -422,3 +421,6 @@ eval "$(goenv init -)"
 eval "$(direnv hook zsh)"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# https://github.com/tmuxinator/tmuxinator
+source ~/.bin/tmuxinator.zsh
