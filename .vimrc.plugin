@@ -3,6 +3,7 @@
 "------------------------------------
 let g:deoplete#auto_complete_delay = 0
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_ignore_case = 'ignorecase'
 let g:deoplete#enable_camel_case = 0
 let g:deoplete#enable_ignore_case = 0
 let g:deoplete#enable_refresh_always = 0
@@ -17,18 +18,45 @@ let g:deoplete#sources#ternjs#filetypes = [
                 \ 'vue',
                 \ '...'
                 \ ]
+
 " inoremap <expr><tab> pumvisible() ? '\<C-n>' :
 "         \ neosnippet#expandable_or_jumpable() ?
 "         \    '\<Plug>(neosnippet_expand_or_jump)' : '\<tab>'
 
-let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory='~/dotfiles/.neocon-snippets'
+" Enable omni completion.
+" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+let g:min_pattern_length = 0
+
+"Add extra filetypes
+let g:deoplete#sources#ternjs#filetypes = [
+      \ 'jsx',
+      \ 'javascript.jsx',
+      \ 'vue',
+      \ ]
+
+" Enable heavy omni completion.
+let g:deoplete#omni_input_patterns = {}
+let g:deoplete#omni_input_patterns.typescript = '\h\w*\|[^. \t]\.\w*'
+inoremap <expr><C-k>  pumvisible() ? deoplete#close_popup() : '<C-k>'
 
 " neosnippet
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_or_jump)
 nmap <Space>nes :NeoSnippetEdit<return>
+
+let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#snippets_directory='~/dotfiles/.neocon-snippets'
+
+inoremap <expr><CR>  neosnippet#expandable() ?
+         \ "\<Plug>(neosnippet_expand)" :
+         \ pumvisible() ?  "\<C-Y>".deoplete#close_popup(): "\<CR>"
 
 if has('conceal')
   set conceallevel=2 concealcursor=niv
@@ -134,7 +162,7 @@ call denite#custom#source(
 nmap ,ub :Denite -buffer-name=files -mode=normal -direction=topleft buffer <return>
 nmap ,uh :Denite file_mru -mode=normal -direction=topleft<return>
 nmap ,uf :DeniteBufferDir -buffer-name=files -mode=normal -direction=topleft file file:new<return>
-nmap ,up :DeniteProjectDir file_rec -direction=topleft -path=<return>
+nmap ,uj :DeniteProjectDir file_rec -direction=topleft -path=<return>
 nmap ,uw :<C-u>DeniteCursorWord -buffer-name=search
         \ -auto-highlight -mode=normal line -direction=topleft<return>
 nmap ,uc :Denite -auto-preview colorscheme -direction=topleft<return>
@@ -211,38 +239,6 @@ augroup AlpacaTags
   endif
 augroup END
 
-" syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_auto_jump = 0
-let g:syntastic_enable_signs = 1
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '⚠'
-
-" let g:syntastic_rust_checkers = ['cargo']
-
-let g:syntastic_html_checkers = ['tidy']
-let g:syntastic_html_exec = 'tidy5'
-let g:syntastic_javascript_checkers = ['jslint']
-let g:syntastic_mode_map = {
-      \ 'mode': 'active',
-      \ 'active_filetypes': ['javascript'],
-      \ 'passive_filetypes': ['html']
-      \}
-let g:syntastic_html_tidy_ignore_errors = [
-      \ '> is not recognized!',
-      \ 'discarding unexpected <paper',
-      \ 'discarding unexpected </paper',
-      \ 'discarding unexpected <dom-module',
-      \ 'discarding unexpected <template',
-      \ 'discarding unexpected <iron',
-      \]
 let g:previm_open_cmd = 'open -a Google\ Chrome'
 
 "------------------------------------
@@ -308,7 +304,6 @@ function! s:Jq(...)
     execute "%! jq \"" . l:arg . "\""
 endfunction
 
-
 "------------------------------------
 " Indent Guides
 "------------------------------------
@@ -318,43 +313,11 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'tagbar', 'denite', 'json']
 
-" Enable omni completion.
-" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-" autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#enable_ignore_case = 'ignorecase'
-let g:min_pattern_length = 0
-
-"Add extra filetypes
-let g:deoplete#sources#ternjs#filetypes = [
-      \ 'jsx',
-      \ 'javascript.jsx',
-      \ 'vue',
-      \ ]
-
-" Enable heavy omni completion.
-let g:deoplete#omni_input_patterns = {}
-let g:deoplete#omni_input_patterns.typescript = '\h\w*\|[^. \t]\.\w*'
-inoremap <expr><C-k>  pumvisible() ? deoplete#close_popup() : '<C-k>'
-
 "------------------------------------
 " pangloss/vim-javascript
 "------------------------------------
-
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
-
-"------------------------------------
-" typescript
-"------------------------------------
-let g:TSS = ['tss','--module','commonjs']
 
 "------------------------------------
 " vim-airline
@@ -366,6 +329,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
+let g:airline#extensions#ale#enabled = 1
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
@@ -412,3 +376,42 @@ let g:tmuxline_preset = {
   \'y'    : ['%R', '%a', '%Y'],
   \'z'    : '#H'}
 let g:tmuxline_theme = g:airline_theme
+
+"------------------------------------
+" ale
+"------------------------------------
+
+let g:ale_enabled = 1
+let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+let g:ale_fix_on_save = 1
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_text_changed = 'never'
+
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 0
+let g:ale_open_list = 0
+let g:ale_keep_list_window_open = 0
+
+let g:ale_javascript_prettier_use_local_config = 1
+
+let g:ale_fixers = {
+      \   'javascript': ['prettier', 'eslint'],
+      \   'typescript': ['prettier', 'eslint'],
+      \   'vue': ['prettier', 'eslint'],
+      \   'ruby': ['rubocop'],
+      \   'go': ['goimports'],
+      \}
+
+let g:lightline = {
+      \'active': {
+      \  'left': [
+      \    ['mode', 'paste'],
+      \    ['readonly', 'filename', 'modified'],
+      \    ['ale'],
+      \  ]
+      \},
+      \'component_function': {
+      \  'ale': 'ALEGetStatusLine'
+      \}
+      \}
+nnoremap <C-a><C-f> :ALEFix<CR>

@@ -22,8 +22,7 @@ call plug#begin('~/.vim/plugged')
   " Plug 'basyura/unite-rails'
 
   " Syntax
-  Plug 'vim-syntastic/syntastic'
-  Plug 'pmsorhaindo/syntastic-local-eslint.vim'
+  Plug 'w0rp/ale'
 
   Plug 'othree/html5.vim'
   Plug 'JulesWang/css.vim'
@@ -35,13 +34,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
   Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'vue'] }
   " Plug 'briancollins/vim-jst'
-  " Plug 'nono/vim-handlebars'
   Plug 'digitaltoad/vim-pug', { 'for': ['pug', 'vue', 'jade'] }
   " Plug 'bendavis78/vim-polymer'
   Plug 'jwalton512/vim-blade'
-  Plug 'Quramy/tsuquyomi'
   Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'vue'] }
-  Plug 'clausreinke/typescript-tools.vim', { 'do': 'npm install', 'for': ['typescript', 'vue'] }
   Plug 'nikvdp/ejs-syntax', { 'for': 'ejs' }
   " Plug 'flowtype/vim-flow'
   Plug 'parkr/vim-jekyll'
@@ -61,7 +57,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-scripts/surround.vim'
   Plug 'vim-scripts/tComment'
   Plug 'Lokaltog/vim-easymotion'
-  " Plug 'lilydjwg/colorizer'
   Plug 'rhysd/clever-f.vim'
   Plug 'kana/vim-smartinput'
   Plug 'cohama/vim-smartinput-endwise'
@@ -72,7 +67,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'AndrewRadev/switch.vim'
   Plug 'haya14busa/incsearch.vim'
   Plug 'haya14busa/incsearch-fuzzy.vim'
-  Plug 'haya14busa/incsearch-migemo.vim'
+  Plug 'haya14busa/incsearch-migemo.vim', { 'do': 'brew install cmigemo' }
   Plug 'haya14busa/incsearch-easymotion.vim'
   Plug 'tpope/vim-rails'
   Plug 'posva/vim-vue'
@@ -95,16 +90,14 @@ call plug#begin('~/.vim/plugged')
   Plug 'Shougo/neosnippet'
   Plug 'Shougo/neosnippet-snippets'
   Plug 'Shougo/neomru.vim'
-  Plug 'Shougo/neocomplcache'
-  Plug 'Shougo/neocomplcache-rsense'
   Plug 'Shougo/vimproc', {'do': 'make'}
   Plug 'Shougo/neomru.vim'
 
   Plug 'wokalski/autocomplete-flow'
   Plug 'zchee/deoplete-go', { 'do': 'make'}
   Plug 'zchee/deoplete-zsh'
-  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-  Plug 'landaire/deoplete-swift'
+  " Plug 'landaire/deoplete-swift'
+  Plug 'HerringtonDarkholme/yats.vim'
   Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
   Plug 'padawan-php/deoplete-padawan', { 'do': 'composer install' }
   Plug 'zchee/deoplete-jedi'
@@ -112,6 +105,7 @@ call plug#begin('~/.vim/plugged')
   " For git
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-obsession'
+  Plug 'airblade/vim-gitgutter'
 
   " For translate
   Plug 'thinca/vim-ref'
@@ -125,6 +119,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'kannokanno/previm'
   Plug 'tyru/open-browser.vim'
   Plug 'edkolev/tmuxline.vim'
+  Plug 'bronson/vim-visual-star-search'
 
   "EditorConfig
   Plug 'editorconfig/editorconfig-vim'

@@ -5,7 +5,6 @@ filetype plugin on
 
 colorscheme molokai
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 set guifont=Ricty_Diminished:h10
@@ -103,11 +102,12 @@ nnoremap - <C-x>
 nnoremap <Leader>l :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
 
 " open .vimrc
-nnoremap \eg :edit ~/.vimrc.general<cr>
-nnoremap \ep :edit ~/.vimrc.plug<cr>
-nnoremap \el :edit ~/.vimrc.plugin<cr>
+nnoremap ,eg :edit ~/.vimrc.general<cr>
+nnoremap ,ep :edit ~/.vimrc.plug<cr>
+nnoremap ,el :edit ~/.vimrc.plugin<cr>
 
 autocmd FileType vue syntax sync fromstart
+autocmd FileType netrw setl bufhidden=wipe
 autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 autocmd BufNewFile,BufRead *.ts set filetype=typescript
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript
