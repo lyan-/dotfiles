@@ -83,6 +83,8 @@ path=(
     $path
 )
 
+export PATH="$HOME/.anyenv/bin:$PATH"
+
 # node
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 export PATH=$HOME/.nodebrew/current/npm/bin:$PATH
@@ -90,32 +92,29 @@ export PATH=$HOME/.npm/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.tmux/bin:$PATH
 
-# ruby
-export PATH=$HOME/.rbenv/bin:$PATH
-
 # golang
 export GOPATH=$HOME/go
 export PATH="$GOPATH/bin:$PATH"
 export PATH=/usr/local/opt/go/libexec/bin:$PATH
-export PATH="$HOME/.goenv/bin:$PATH"
 
 # PHP
 export PATH=$HOME/.composer/vendor/bin:$PATH
 
 # Python
 export PATH=$HOME/Library/Python/2.7/bin:$PATH
-export PYENV_ROOT=$HOME/.pyenv
-export PATH=$PYENV_ROOT/bin:$PATH
 
 # Rust
 export PATH=$HOME/.cargo/bin:$PATH
 export RUST_SRC_PATH=$HOME/.multirust/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src
 
 # gettext
-export PATH="/usr/local/opt/gettext/bin:$PATH"
+export PATH=/usr/local/opt/gettext/bin:$PATH
 
 # Sqlite
-export PATH="/usr/local/opt/sqlite/bin:$PATH"
+export PATH=/usr/local/opt/sqlite/bin:$PATH
+
+# Deno
+export PATH=$HOME/.deno/bin:$PATH
 
 # -------------------------------------
 # プロンプト
@@ -179,6 +178,20 @@ function prompt()
 # -------------------------------------
 # エイリアス
 # -------------------------------------
+# Outputs the name of the current branch
+# Usage example: git pull origin $(git_current_branch)
+# Using '--quiet' with 'symbolic-ref' will not cause a fatal error (128) if
+# it's not a symbolic ref, but in a Git repo.
+function git_current_branch() {
+  local ref
+  ref=$(command git symbolic-ref --quiet HEAD 2> /dev/null)
+  local ret=$?
+  if [[ $ret != 0 ]]; then
+    [[ $ret == 128 ]] && return  # no git repo.
+    ref=$(command git rev-parse --short HEAD 2> /dev/null) || return
+  fi
+  echo ${ref#refs/heads/}
+}
 
 # -n 行数表示, -I バイナリファイル無視, svn関係のファイルを無視
 alias grep="grep --color -n -I --exclude='*.svn-*' --exclude='entries' --exclude='*/cache/*'"
@@ -193,8 +206,11 @@ alias l1="ls -1"
 # tree
 alias tree="tree -NC" # N: 文字化け対策, C:色をつける
 
+alias gmom="git fetch && git merge origin/master"
 alias gmod="git fetch && git merge origin/develop"
 alias gpor="git push origin `git rev-parse --abbrev-ref HEAD`"
+alias gpuo="git push --set-upstream origin"
+alias gpuc="git push --set-upstream origin `git_current_branch`"
 alias chrome="open -a Google\ Chrome"
 alias finder="open -a Finder"
 alias atom="open -a Atom"
@@ -206,12 +222,20 @@ alias be="bundle exec"
 alias bi="bundle install"
 
 #util
-alias up="cd ..; ls -l"
+alias groot="cd ./$(git rev-parse --show-cdup)"
 alias f="open ."
 alias u="cd ~"
 alias p="cd ~/Projects"
 
 alias j="z"
+
+# chrome
+if [ `uname` = "Darwin" ]; then
+  alias google-chrome='open -a Google\ Chrome'
+fi
+alias chrome='google-chrome'
+
+alias -s html=chrome
 
 # -------------------------------------
 # エイリアス
@@ -415,12 +439,18 @@ alias -g T='| tail'
 alias -g S='| sed'
 alias -g C='| cat'
 
-eval "$(rbenv init -)"
-eval "$(pyenv init -)"
-eval "$(goenv init -)"
+eval "$(anyenv init -)"
 eval "$(direnv hook zsh)"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # https://github.com/tmuxinator/tmuxinator
 source ~/.bin/tmuxinator.zsh
+
+function rust_run() {
+  rustc $1
+  local binary=$(basename $1 .rs)
+  ./$binary
+}
+
+alias rsrun='rust_run'

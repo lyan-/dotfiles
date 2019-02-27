@@ -58,10 +58,6 @@ inoremap <expr><CR>  neosnippet#expandable() ?
          \ "\<Plug>(neosnippet_expand)" :
          \ pumvisible() ?  "\<C-Y>".deoplete#close_popup(): "\<CR>"
 
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-
 " emmet
 " let g:user_emmet_leader_key='<C-e>'
 nmap <C-e> <C-y>,
@@ -117,6 +113,8 @@ call denite#custom#source('tag', 'matchers', ['matcher_substring'])
 if has('nvim')
   call denite#custom#source('file_rec,grep', 'matchers',
         \ ['matcher_cpsm'])
+call denite#custom#source('file', 'matchers',
+      \ ['converter/abbr_word', 'matcher/fuzzy'])
 endif
 call denite#custom#source('file_old', 'converters',
       \ ['converter_relative_word'])
@@ -163,14 +161,16 @@ nmap ,ub :Denite -buffer-name=files -mode=normal -direction=topleft buffer <retu
 nmap ,uh :Denite file_mru -mode=normal -direction=topleft<return>
 nmap ,uf :DeniteBufferDir -buffer-name=files -mode=normal -direction=topleft file file:new<return>
 nmap ,uj :DeniteProjectDir file_rec -direction=topleft -path=<return>
-nmap ,uw :<C-u>DeniteCursorWord -buffer-name=search
-        \ -auto-highlight -mode=normal line -direction=topleft<return>
+nmap ,ug :DeniteProjectDir grep -mode=normal -direction=topleft -buffer-name=projectGrep<return>
+nmap ,uw :DeniteProjectDir grep -input=`expand('<cword>')` -buffer-name=search
+        \ -mode=normal -direction=topleft<return>
+" nmap ,uw :<C-u>DeniteCursorWord -buffer-name=search
+"         \ -auto-highlight -mode=normal line -direction=topleft<return>
 nmap ,uc :Denite -auto-preview colorscheme -direction=topleft<return>
-nmap ,us :cd %:h
-        \ :Denite grep:. -buffer-name=search-buffer -mode=normal -direction=topleft<return>
-nmap ,ug :DeniteProjectDir grep -mode=normal -direction=topleft<return>
-nmap ,ur :Denite -resume -mode=normal -direction=topleft<return>
-nnoremap ,ue :Denite -direction=topleft file_rec/async:!<return>
+" nmap ,us :cd %:h
+"         \ :Denite grep:. -buffer-name=search-buffer -mode=normal -direction=topleft<return>
+" nnoremap ,ue :Denite -direction=topleft file_rec/async:!<return>
+nnoremap <silent> ft :<C-u>Denite filetype -direction=topleft<return>
 
 " incsearch
 map / <Plug>(incsearch-forward)
@@ -415,3 +415,30 @@ let g:lightline = {
       \}
       \}
 nnoremap <C-a><C-f> :ALEFix<CR>
+
+"------------------------------------
+" vim-go
+"------------------------------------
+let g:go_doc_keywordprg_enabled = 0
+
+"------------------------------------
+" switch.vim
+"------------------------------------
+let g:switch_custom_definitions =
+  \ [
+  \   ['hoge', 'fuga', 'piyo'],
+  \   ['foo', 'bar', 'baz'],
+  \   {
+  \     '\<[a-z0-9]\+_\k\+\>': {
+  \       '_\(.\)': '\U\1'
+  \     },
+  \     '\<[a-z0-9]\+[A-Z]\k\+\>': {
+  \       '\<\([a-z]\)': '\U\1'
+  \     },
+  \     '\<[A-Z][a-z0-9]\+[A-Z]\k\+\>': {
+  \       '\<\([A-Z]\)': '\l\1',
+  \       '\([a-z0-9]\)\([A-Z]\)': '\1_\l\2'
+  \     },
+  \   }
+  \ ]
+

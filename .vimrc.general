@@ -66,9 +66,9 @@ nmap j gj
 nmap k gk
 nmap > >>
 nmap < <<
-"buffer next
+
+"switching an active buffer
 nmap <S-k> :bn <return>
-"buffer previous
 nmap <S-j> :bp <return>
 "
 " clear highlights after search
@@ -108,7 +108,7 @@ nnoremap ,el :edit ~/.vimrc.plugin<cr>
 
 autocmd FileType vue syntax sync fromstart
 autocmd FileType netrw setl bufhidden=wipe
-autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+autocmd BufNewFile,BufRead *.vue setlocal filetype=vue.html.javascript.css
 autocmd BufNewFile,BufRead *.ts set filetype=typescript
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript
 
@@ -131,3 +131,19 @@ set redrawtime=10000
 filetype plugin indent on
 
 command! OpenBrowserCurrent execute "OpenBrowser" expand("%:p")
+
+command! -nargs=? -complete=dir -bang CD  call s:ChangeCurrentDir('<args>', '<bang>')
+function! s:ChangeCurrentDir(directory, bang)
+    if a:directory == ''
+        lcd %:p:h
+    else
+        execute 'lcd' . a:directory
+    endif
+
+    if a:bang == ''
+        pwd
+    endif
+endfunction
+
+" Change current directory.
+nnoremap <silent> <Space>cd :<C-u>CD<CR>
