@@ -37,7 +37,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'jason0x43/vim-js-indent', { 'for': ['javascript', 'vue'] }
   Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
   Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
-  Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+  " Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
   Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'vue'] }
   " Plug 'briancollins/vim-jst'
   Plug 'digitaltoad/vim-pug', { 'for': ['pug', 'vue', 'jade'] }
@@ -48,6 +48,7 @@ call plug#begin('~/.vim/plugged')
   " Plug 'flowtype/vim-flow'
   Plug 'parkr/vim-jekyll'
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  Plug 'stamblerre/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
   Plug 'rust-lang/rust.vim', { 'for': 'rust' }
   Plug 'racer-rust/vim-racer', { 'for': 'rust' }
 
@@ -87,8 +88,10 @@ call plug#begin('~/.vim/plugged')
   " Neoxxx
   if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
   else
     Plug 'Shougo/deoplete.nvim'
+    Plug 'Shougo/defx.nvim'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
   endif

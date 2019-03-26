@@ -15,3 +15,8 @@ git clone https://github.com/riywo/anyenv ~/.anyenv
 
 sh ~/dotfiles/powerline.sh
 sh ~/dotfiles/install-dependencies.sh
+
+# for neovim
+mkdir -p ~/.config
+ln -s ~/.vim ~/.config/nvim
+ln -s ~/.vimrc ~/.config/nvim/init.vim

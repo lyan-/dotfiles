@@ -7,7 +7,7 @@ export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 # エディタ
-export EDITOR=/usr/local/bin/vim
+export EDITOR=/usr/local/bin/nvim
 
 # ページャ
 export PAGER=/usr/local/bin/vimpager
@@ -215,7 +215,7 @@ alias chrome="open -a Google\ Chrome"
 alias finder="open -a Finder"
 alias atom="open -a Atom"
 
-alias vi="/usr/local/bin/vim"
+alias vi="/usr/local/bin/nvim"
 
 #ruby bundler
 alias be="bundle exec"
@@ -454,3 +454,6 @@ function rust_run() {
 }
 
 alias rsrun='rust_run'
+
+# for neovim
+export XDG_CONFIG_HOME=~/.config

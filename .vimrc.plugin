@@ -91,10 +91,26 @@ let g:racer_experimental_completer = 1
 " clever-f
 let g:clever_f_use_migemo = 1
 
+function! Flatten(list)
+  let val = []
+  for elem in a:list
+    if type(elem) == type([])
+      call extend(val, Flatten(elem))
+    else
+      call add(val, elem)
+    endif
+    unlet elem
+  endfor
+  return val
+endfunction
+
 " Denite
+let s:ignore_globs = ['.git/', '.ropeproject/', '__pycache__/', 'node_modules/', 'venv/', 'images/', '*.min.*', 'img/', 'fonts/']
 if executable('rg')
-  call denite#custom#var('file_rec', 'command',
-        \ ['rg', '--files', '--glob', '!.git'])
+  call denite#custom#var('file/rec', 'command',
+        \ ['rg', '--files', '--glob', '!.git']
+        \ + Flatten(map(deepcopy(s:ignore_globs), { k, v -> ['-g', '!' . v] }))
+        \)
   call denite#custom#var('grep', 'command', ['rg', '--threads', '1'])
   call denite#custom#var('grep', 'recursive_opts', [])
   call denite#custom#var('grep', 'final_opts', [])
@@ -102,7 +118,7 @@ if executable('rg')
   call denite#custom#var('grep', 'default_opts',
         \ ['--vimgrep', '--no-heading'])
 else
-  call denite#custom#var('file_rec', 'command',
+  call denite#custom#var('file/rec', 'command',
         \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 endif
 
@@ -111,7 +127,7 @@ call denite#custom#source('file_old', 'matchers',
       \ ['matcher_fuzzy', 'matcher_project_files'])
 call denite#custom#source('tag', 'matchers', ['matcher_substring'])
 if has('nvim')
-  call denite#custom#source('file_rec,grep', 'matchers',
+  call denite#custom#source('file/rec,grep', 'matchers',
         \ ['matcher_cpsm'])
 call denite#custom#source('file', 'matchers',
       \ ['converter/abbr_word', 'matcher/fuzzy'])
@@ -134,8 +150,8 @@ call denite#custom#map('normal', 'r',
 call denite#custom#map('insert', ';',
       \ 'vimrc#sticky_func()', 'expr')
 
-call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-call denite#custom#var('file_rec/git', 'command',
+call denite#custom#alias('source', 'file/rec/git', 'file/rec')
+call denite#custom#var('file/rec/git', 'command',
       \ ['git', 'ls-files', '-co', '--exclude-standard'])
 
 call denite#custom#option('default', {
@@ -146,9 +162,7 @@ call denite#custom#option('default', {
 call denite#custom#option('_', 'highlight_mode_insert', 'CursorLine')
 call denite#custom#option('_', 'highlight_matched_range', 'None')
 call denite#custom#option('_', 'highlight_matched_char', 'None')
-call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
-      \ [ '.git/', '.ropeproject/', '__pycache__/',
-      \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
+call denite#custom#filter('matcher/ignore_globs', 'ignore_globs', s:ignore_globs)
 call denite#custom#action('file', 'buffer',
       \ {context -> denite#do_action(context, 'open', context['targets'])})
 call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>')
@@ -160,7 +174,7 @@ call denite#custom#source(
 nmap ,ub :Denite -buffer-name=files -mode=normal -direction=topleft buffer <return>
 nmap ,uh :Denite file_mru -mode=normal -direction=topleft<return>
 nmap ,uf :DeniteBufferDir -buffer-name=files -mode=normal -direction=topleft file file:new<return>
-nmap ,uj :DeniteProjectDir file_rec -direction=topleft -path=<return>
+nmap ,uj :DeniteProjectDir file/rec -direction=topleft -path=<return>
 nmap ,ug :DeniteProjectDir grep -mode=normal -direction=topleft -buffer-name=projectGrep<return>
 nmap ,uw :DeniteProjectDir grep -input=`expand('<cword>')` -buffer-name=search
         \ -mode=normal -direction=topleft<return>
@@ -387,6 +401,13 @@ let g:ale_fix_on_save = 1
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 'never'
 
+let g:airline#extensions#ale#open_lnum_symbol = '('
+let g:airline#extensions#ale#close_lnum_symbol = ')'
+
+let g:ale_echo_msg_format = '[%linter%]%code: %%s'
+let g:ale_sign_error = ''
+let g:ale_sign_warning = ''
+
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 0
 let g:ale_open_list = 0
@@ -420,6 +441,12 @@ nnoremap <C-a><C-f> :ALEFix<CR>
 " vim-go
 "------------------------------------
 let g:go_doc_keywordprg_enabled = 0
+let g:go_def_mapping_enabled = 0
+let g:go_fmt_autosave = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
 
 "------------------------------------
 " switch.vim
@@ -442,3 +469,4 @@ let g:switch_custom_definitions =
   \   }
   \ ]
 
+map R <Plug>(operator-replace)

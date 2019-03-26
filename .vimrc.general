@@ -7,6 +7,8 @@ colorscheme molokai
 set statusline+=%#warningmsg#
 set statusline+=%*
 
+set lazyredraw
+
 set guifont=Ricty_Diminished:h10
 set backspace=indent,eol,start
 set background=dark
@@ -47,6 +49,9 @@ set display=lastline
 set pumheight=10
 set showmatch
 set matchtime=1
+
+set synmaxcol=256
+syntax sync minlines=256
 
 " gf
 set includeexpr=substitute(v:fname,'$','.ts','')
@@ -147,3 +152,7 @@ endfunction
 
 " Change current directory.
 nnoremap <silent> <Space>cd :<C-u>CD<CR>
+
+" split pane
+nnoremap <silent> <Space>ss :split<CR>
+nnoremap <silent> <Space>sv :vsplit<CR>
